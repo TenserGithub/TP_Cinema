@@ -82,6 +82,22 @@ public class MovieController {
         });
     }
 
+    @GetMapping("/movie/{id}/cinema")
+    public Movie getCinemaForMovie(@PathVariable int id) {
+        CircuitBreaker circuitBreaker = circuitBreakerFactory.create("cinema");
+        Movie movie = movieDao.findById(id).orElseThrow();
+        int cineId = movie.getFirstProjectionCinema();
+        return circuitBreaker.run(() -> {
+            RestTemplate restTemplate = new RestTemplate();
+            Cinema cinema = restTemplate.getForEntity("http://localhost:8000/api/cinema/" + cineId, Cinema.class).getBody();
+            movie.setCinema(cinema);
+            return movie;
+        }, throwable -> {
+            System.out.println(throwable.getMessage());
+            return movie;
+        });
+    }
+
 
 
 

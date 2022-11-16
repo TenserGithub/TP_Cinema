@@ -2,6 +2,7 @@ package com.rest.tp1_rest.model;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Transient;
 
 @Entity
 public class Movie {
@@ -9,16 +10,35 @@ public class Movie {
     private int id;
     private String title;
     private int years;
-//    private int firstProjectionCinema;
 
-/*    public Movie(int id, String title, int years, int firstProjectionCinema) {
+    private int firstProjectionCinema;
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public Cinema getCinema() {
+        return cinema;
+    }
+
+    public void setCinema(Cinema cinema) {
+        this.cinema = cinema;
+    }
+
+    @Transient
+    private Cinema cinema;
+    public Movie(int id, String title, int years, int firstProjectionCinema) {
         this.id = id;
         this.title = title;
         this.years = years;
         this.firstProjectionCinema = firstProjectionCinema;
     }
-*/
 
+    public Movie() {
+
+    }
+
+/*
     public Movie(int id, String title, int years) {
         this.id = id;
         this.title = title;
@@ -28,7 +48,7 @@ public class Movie {
     public Movie() {
 
     }
-
+*/
     public int getId() {
         return id;
     }
@@ -49,13 +69,13 @@ public class Movie {
         this.years = years;
     }
 
-/*    public int getFirstProjectionCinema() {
+   public int getFirstProjectionCinema() {
         return firstProjectionCinema;
-    }*/
+    }
 
-/*    public void setFirstProjectionCinema(int id) {
+ public void setFirstProjectionCinema(int id) {
         this.firstProjectionCinema = id;
-    }*/
+    }
 
 
 /*    @Override
@@ -74,6 +94,7 @@ public String toString() {
             "id=" + id +
             ", title='" + title +
             ", years='" + years +
+            ", First projection cinema='" + firstProjectionCinema +
             '}';
 }
 }

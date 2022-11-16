@@ -22,7 +22,7 @@ class MovieControllerTest {
 
     @Test
     void updateMovieBadFormat() {
-        Movie movie = new Movie(1000, "test", 2000);
+        Movie movie = new Movie(1000, "test", 2000, 1);
         RestAssured.given()
                 .contentType("application/json")
                 .body(movie)
@@ -31,6 +31,8 @@ class MovieControllerTest {
                 .then()
                 .statusCode(405);
     }
+
+
 
 
 

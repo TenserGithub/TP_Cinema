@@ -18,28 +18,28 @@ class MovieTest {
 
         @org.junit.jupiter.api.Test
         void setTitle() {
-            Movie movie = new Movie(1, "test", 2000,1);
+            Movie movie = new Movie(1, "test", 2000, 1);
             movie.setTitle("test2");
             assertEquals("test2", movie.getTitle());
         }
 
         @org.junit.jupiter.api.Test
         void getYears() {
-            Movie movie = new Movie(1, "test", 2000,1);
+            Movie movie = new Movie(1, "test", 2000, 1);
             assertEquals(2000, movie.getYears());
         }
 
         @org.junit.jupiter.api.Test
         void setYears() {
-            Movie movie = new Movie(1, "test", 2000,1);
+            Movie movie = new Movie(1, "test", 2000, 1);
             movie.setYears(2001);
             assertEquals(2001, movie.getYears());
         }
 
         @org.junit.jupiter.api.Test
         void testToString() {
-            Movie movie = new Movie(1, "test", 2000,1);
-            assertEquals("Movie{id=1, title='test, years='2000,First projection cinema='1}", movie.toString());
+            Movie movie = new Movie(1, "test", 2000, 1);
+            assertEquals("Movie{id=1, title=test, years=2000, firstProjectionCinema=1}", movie.toString());
         }
 
 }

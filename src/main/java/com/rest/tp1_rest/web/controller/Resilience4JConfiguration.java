@@ -1,6 +1,7 @@
 package com.rest.tp1_rest.web.controller;
 
 import io.github.resilience4j.circuitbreaker.CircuitBreakerConfig;
+import io.github.resilience4j.retry.RetryConfig;
 import io.github.resilience4j.timelimiter.TimeLimiterConfig;
 import org.springframework.cloud.circuitbreaker.resilience4j.Resilience4JCircuitBreakerFactory;
 import org.springframework.cloud.circuitbreaker.resilience4j.Resilience4JConfigBuilder;
@@ -8,7 +9,9 @@ import org.springframework.cloud.client.circuitbreaker.Customizer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import java.io.IOException;
 import java.time.Duration;
+import java.util.concurrent.TimeoutException;
 
 @Configuration
 public class Resilience4JConfiguration {
@@ -20,6 +23,7 @@ public class Resilience4JConfiguration {
     TimeLimiterConfig timeLimiterConfig = TimeLimiterConfig.custom()
             .timeoutDuration(Duration.ofSeconds(4))
             .build();
+
     @Bean
     public Customizer<Resilience4JCircuitBreakerFactory> globalCustomConfiguration() {
 
